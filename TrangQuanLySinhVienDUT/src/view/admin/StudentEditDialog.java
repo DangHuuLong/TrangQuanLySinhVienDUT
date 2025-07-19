@@ -1,4 +1,4 @@
-package view.dialog;
+package view.admin;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,8 +16,8 @@ public class StudentEditDialog extends JDialog {
     private JComboBox<String> fieldCombo;
     private JTextField valueField;
 
-    public StudentEditDialog(JFrame parent, int studentId, BiConsumer<String, Object> onSubmit) {
-        super(parent, "Sửa thông tin sinh viên", true);
+    public StudentEditDialog(Window parent, int studentId, BiConsumer<String, Object> onSubmit) {
+    	super(parent instanceof Frame ? (Frame) parent : null, "Sửa thông tin sinh viên", true);
         setSize(500, 200);
         setLocationRelativeTo(parent);
         setLayout(new BorderLayout());

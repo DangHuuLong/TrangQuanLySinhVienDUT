@@ -1,4 +1,4 @@
-package view;
+package view.student;
 
 import dao.StudentDAO;
 import model.Student;

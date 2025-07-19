@@ -31,14 +31,13 @@ public class Student extends User {
     private String avatarPath;
 
     public Student() {
-        this.role = "student"; // mặc định là sinh viên
+        this.role = "student"; 
     }
 
     public String getFullName() { return fullName; }
     public void setFullName(String fullName) { this.fullName = fullName; }
     
     public String getStudentCode() { return studentCode; }
-
     public void setStudentCode(String studentCode) { this.studentCode = studentCode; }
 
 

@@ -1,4 +1,4 @@
-package view.dialog;
+package view.admin;
 
 import model.Student;
 
@@ -9,8 +9,8 @@ import java.util.function.Consumer;
 public class StudentAddDialog extends JDialog {
     private JTextField codeField, nameField;
 
-    public StudentAddDialog(JFrame parent, Consumer<Student> onSubmit) {
-        super(parent, "Thêm sinh viên mới", true);
+    public StudentAddDialog(Window parent, Consumer<Student> onSubmit) {
+        super(parent instanceof Frame ? (Frame) parent : null, "Thêm sinh viên mới", true);
         setSize(400, 250);
         setLocationRelativeTo(parent);
         setLayout(new BorderLayout());
@@ -41,8 +41,7 @@ public class StudentAddDialog extends JDialog {
             student.setFullName(name);
             student.setUsername(code);   
             student.setPassword(code);   
-            student.setRole("student");  
-            student.setId(code.hashCode()); // gán ID từ mã sinh viên
+            student.setRole("student");
 
             onSubmit.accept(student);
             dispose();

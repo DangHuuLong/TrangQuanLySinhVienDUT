@@ -2,10 +2,12 @@ package controller;
 
 import dao.StudentDAO;
 import model.Student;
-import view.dialog.StudentAddDialog;
-import view.dialog.StudentEditDialog;
+import view.admin.StudentAddDialog;
+import view.admin.StudentEditDialog;
 
 import javax.swing.*;
+
+import java.awt.Window;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -16,27 +18,42 @@ public class StudentController {
         return dao.getAll();
     }
 
-    public void showAddStudentDialog(JFrame parent, Runnable onSuccess) {
+    public void showAddStudentDialog(Window parent, Runnable onSuccess) {
         new StudentAddDialog(parent, student -> {
             dao.insertBasic(student);
             onSuccess.run();
         });
     }
 
-    public void showEditStudentDialog(JFrame parent, int id, Runnable onSuccess) {
-        if (id <= 0) return;
+    public void showEditStudentDialog(Window parent, int id, Runnable onSuccess) {
+        if (id <= 0) {
+            JOptionPane.showMessageDialog(parent, "Vui lòng chọn sinh viên để sửa.");
+            return;
+        }
         new StudentEditDialog(parent, id, (field, value) -> {
-            dao.updateField(id, field, value);
-            onSuccess.run();
+            boolean updated = dao.updateField(id, field, value);
+            if (updated) {
+                onSuccess.run();
+            } else {
+                JOptionPane.showMessageDialog(parent, "Cập nhật thất bại.");
+            }
         });
     }
 
-    public void deleteStudent(JFrame parent, int id, Runnable onSuccess) {
-        if (id <= 0) return;
+    public void deleteStudent(Window parent, int id, Runnable onSuccess) {
+        if (id <= 0) {
+            JOptionPane.showMessageDialog(parent, "Vui lòng chọn sinh viên để xoá.");
+            return;
+        }
         int confirm = JOptionPane.showConfirmDialog(parent, "Xác nhận xoá sinh viên?", "Xoá", JOptionPane.YES_NO_OPTION);
         if (confirm == JOptionPane.YES_OPTION) {
-            dao.deleteById(id);
-            onSuccess.run();
+            boolean deleted = dao.deleteById(id);
+            if (deleted) {
+                onSuccess.run();
+            } else {
+                JOptionPane.showMessageDialog(parent, "Không thể xoá sinh viên.");
+            }
         }
     }
+
 }

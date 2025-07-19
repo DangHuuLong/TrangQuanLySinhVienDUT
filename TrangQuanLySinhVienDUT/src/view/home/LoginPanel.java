@@ -1,6 +1,8 @@
-package view;
+package view.home;
 
 import model.User;
+import view.admin.AdminPanel;
+import view.student.StudentPanel;
 import dao.UserDAO;
 
 import javax.swing.*;

@@ -1,29 +1,24 @@
-package view;
+package view.admin;
 
 import controller.StudentController;
-import model.User;
+import model.Student;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.List;
-import model.Student;
 
-public class AdminPanel extends JFrame {
+public class StudentPanel extends JPanel {
     private JTable studentTable;
     private DefaultTableModel tableModel;
     private StudentController controller;
 
-    public AdminPanel(User admin) {
-        setTitle("Quản lý sinh viên - Admin");
-        setSize(1000, 600);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
+    public StudentPanel() {
+        setLayout(new BorderLayout());
         controller = new StudentController();
 
         // Table
-        String[] columns = {"ID", "Mã SV", "Họ tên"};
+        String[] columns = {"Mã SV", "Họ tên"};
         tableModel = new DefaultTableModel(columns, 0);
         studentTable = new JTable(tableModel);
         JScrollPane scrollPane = new JScrollPane(studentTable);
@@ -44,18 +39,16 @@ public class AdminPanel extends JFrame {
         loadStudents();
 
         // Sự kiện nút
-        addBtn.addActionListener(e -> controller.showAddStudentDialog(this, this::loadStudents));
-        editBtn.addActionListener(e -> controller.showEditStudentDialog(this, getSelectedStudentId(), this::loadStudents));
-        deleteBtn.addActionListener(e -> controller.deleteStudent(this, getSelectedStudentId(), this::loadStudents));
-
-        setVisible(true);
+        addBtn.addActionListener(e -> controller.showAddStudentDialog(SwingUtilities.getWindowAncestor(this), this::loadStudents));
+        editBtn.addActionListener(e -> controller.showEditStudentDialog(SwingUtilities.getWindowAncestor(this), getSelectedStudentId(), this::loadStudents));
+        deleteBtn.addActionListener(e -> controller.deleteStudent(SwingUtilities.getWindowAncestor(this), getSelectedStudentId(), this::loadStudents));
     }
 
     private void loadStudents() {
         tableModel.setRowCount(0);
         List<Student> students = controller.getAllStudents();
         for (Student s : students) {
-            tableModel.addRow(new Object[]{s.getId(), s.getStudentCode(), s.getFullName()});
+            tableModel.addRow(new Object[]{s.getStudentCode(), s.getFullName()});
         }
     }
 
