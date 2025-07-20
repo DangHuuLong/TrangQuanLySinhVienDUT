@@ -74,4 +74,30 @@ public class MajorDAO {
             return false;
         }
     }
+    
+    public List<Major> getMajorsByDepartment(String maKhoa) {
+        List<Major> list = new ArrayList<>();
+        String sql = "SELECT * FROM majors WHERE ma_khoa = ?";
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, maKhoa);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Major major = new Major();
+                major.setMaNganh(rs.getString("ma_nganh"));
+                major.setTenNganh(rs.getString("ten_nganh"));
+                major.setMaKhoa(rs.getString("ma_khoa"));
+                list.add(major);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
 }

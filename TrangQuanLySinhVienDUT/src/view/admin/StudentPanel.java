@@ -39,7 +39,17 @@ public class StudentPanel extends JPanel {
         loadStudents();
 
         // Sự kiện nút
-        addBtn.addActionListener(e -> controller.showAddStudentDialog(SwingUtilities.getWindowAncestor(this), this::loadStudents));
+        addBtn.addActionListener(e -> {
+            new StudentAddDialog(SwingUtilities.getWindowAncestor(this), student -> {
+                if (controller.insertStudent(student)) {
+                    JOptionPane.showMessageDialog(this, "Thêm thành công!");
+                    loadStudents();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Thêm thất bại!");
+                }
+            });
+        });
+
         editBtn.addActionListener(e -> controller.showEditStudentDialog(SwingUtilities.getWindowAncestor(this), getSelectedStudentId(), this::loadStudents));
         deleteBtn.addActionListener(e -> controller.deleteStudent(SwingUtilities.getWindowAncestor(this), getSelectedStudentId(), this::loadStudents));
     }
@@ -55,9 +65,11 @@ public class StudentPanel extends JPanel {
     private int getSelectedStudentId() {
         int row = studentTable.getSelectedRow();
         if (row >= 0) {
-            return (int) tableModel.getValueAt(row, 0);
+            String selectedCode = (String) tableModel.getValueAt(row, 0);
+            return controller.getIdByStudentCode(selectedCode); 	
         }
         JOptionPane.showMessageDialog(this, "Vui lòng chọn sinh viên.");
         return -1;
     }
+
 }

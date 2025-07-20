@@ -30,14 +30,10 @@ public class StudentController {
             JOptionPane.showMessageDialog(parent, "Vui lòng chọn sinh viên để sửa.");
             return;
         }
-        new StudentEditDialog(parent, id, (field, value) -> {
-            boolean updated = dao.updateField(id, field, value);
-            if (updated) {
-                onSuccess.run();
-            } else {
-                JOptionPane.showMessageDialog(parent, "Cập nhật thất bại.");
-            }
+        new StudentEditDialog(parent, id, () -> {
+            getAllStudents();
         });
+
     }
 
     public void deleteStudent(Window parent, int id, Runnable onSuccess) {
@@ -55,5 +51,14 @@ public class StudentController {
             }
         }
     }
+    
+    public boolean insertStudent(Student student) {
+        return dao.insertBasic(student);
+    }
+    
+    public int getIdByStudentCode(String studentCode) {
+        return dao.getIdByStudentCode(studentCode);
+    }
+
 
 }

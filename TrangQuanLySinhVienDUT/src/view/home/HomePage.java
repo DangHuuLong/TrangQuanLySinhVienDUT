@@ -70,7 +70,7 @@ public class HomePage extends JFrame {
         menuPanel.add(createDropdownButton("Cựu sinh viên", new String[]{"Đã tốt nghiệp", "Không tốt nghiệp"}));
         menuPanel.add(createDropdownButton("Phòng học & Hệ thống", new String[]{"Tình hình sử dụng phòng học", "Thống kê báo thiết bị phòng học hỏng", "Trạng thái hệ thống thông tin sinh viên"}));
         menuPanel.add(createDropdownButton("Liên kết", new String[]{"Thư viện", "DUT-LMS"}));
-        menuPanel.add(createDropdownButton("Hỗ trợ", new String[]{"Đăng nhập", "Cổng hỗ trợ thông tin trực tuyến", "Hướng dẫn Đăng ký học", "Hướng dẫn Sử dụng Email DUT", "Văn bản Quy định của Trường", "Biểu mẫu thường dùng"}));
+        menuPanel.add(createDropdownButton("Hỗ trợ", new String[]{"Cổng hỗ trợ thông tin trực tuyến", "Hướng dẫn Đăng ký học", "Hướng dẫn Sử dụng Email DUT", "Văn bản Quy định của Trường", "Biểu mẫu thường dùng"}));
 
         JButton loginBtn = createNavButton("Đăng nhập");
         loginBtn.addActionListener(e -> showLoginContent());

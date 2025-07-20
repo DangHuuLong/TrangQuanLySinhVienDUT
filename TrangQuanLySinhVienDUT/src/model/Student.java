@@ -14,7 +14,8 @@ public class Student extends User {
     private String bhytCode;
     private String bhytValidUntil;
     private boolean freeBhyt;
-    private String major;
+    private String maKhoa;   
+    private String maNganh;  
     private String className;
     private String program;
     private String program2;
@@ -34,6 +35,9 @@ public class Student extends User {
         this.role = "student"; 
     }
 
+    public String getClassName() { return className; }
+    public void setClassName(String className) { this.className = className; }
+    
     public String getFullName() { return fullName; }
     public void setFullName(String fullName) { this.fullName = fullName; }
     
@@ -74,11 +78,11 @@ public class Student extends User {
     public boolean isFreeBhyt() { return freeBhyt; }
     public void setFreeBhyt(boolean freeBhyt) { this.freeBhyt = freeBhyt; }
 
-    public String getMajor() { return major; }
-    public void setMajor(String major) { this.major = major; }
+    public String getMaKhoa() {return maKhoa;}
+    public void setMaKhoa(String maKhoa) {this.maKhoa = maKhoa;}
 
-    public String getClassName() { return className; }
-    public void setClassName(String className) { this.className = className; }
+    public String getMaNganh() {return maNganh;}
+    public void setMaNganh(String maNganh) {this.maNganh = maNganh;}
 
     public String getProgram() { return program; }
     public void setProgram(String program) { this.program = program; }
