@@ -78,5 +78,22 @@ public class DepartmentDAO {
             return false;
         }
     }
+    
+    public String getDepartmentIdByName(String departmentName) throws Exception {
+        String departmentId = null;
+        String sql = "SELECT ma_khoa FROM departments WHERE ten_khoa = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, departmentName);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                departmentId = rs.getString("ma_khoa");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new Exception("Database error occurred while retrieving department ID", e);  
+        }
+        return departmentId;
+    }
 
 }

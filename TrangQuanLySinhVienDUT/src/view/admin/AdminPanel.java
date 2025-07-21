@@ -40,6 +40,12 @@ public class AdminPanel extends JFrame {
         studentBtn.addActionListener(e -> cardLayout.show(contentPanel, "students"));
         navPanel.add(studentBtn);
         
+        // Điều hướng -> Trang quản lý giảng viên
+        JButton lecturerBtn = createNavButton("Giảng viên");
+        lecturerBtn.addActionListener(e -> cardLayout.show(contentPanel, "lecturers"));
+        navPanel.add(lecturerBtn);
+
+        
         // Điều hướng -> Trang quản lý khoa
         JButton deptBtn = createNavButton("Khoa");
         deptBtn.addActionListener(e -> cardLayout.show(contentPanel, "departments"));
@@ -69,6 +75,7 @@ public class AdminPanel extends JFrame {
         contentPanel.setLayout(cardLayout);
 
         contentPanel.add(new StudentPanel(), "students");
+        contentPanel.add(new LecturerPanel(), "lecturers");
         contentPanel.add(new DepartmentPanel(), "departments");
         contentPanel.add(new MajorPanel(), "majors");
 

@@ -2,6 +2,7 @@ package view.home;
 
 import model.User;
 import view.admin.AdminPanel;
+import view.lecturer.LecturerPanel;
 import view.student.StudentPanel;
 import dao.UserDAO;
 
@@ -87,8 +88,10 @@ public class LoginPanel extends JPanel {
                 parentFrame.dispose();
                 if ("admin".equals(user.getRole())) {
                     new AdminPanel(user);
-                } else {
+                } else if("student".equals(user.getRole())) {
                     new StudentPanel(user);
+                } else {
+                	new LecturerPanel(user);
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "Tài khoản hoặc mật khẩu không đúng.");

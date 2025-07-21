@@ -66,7 +66,6 @@ public class StudentDAO {
             conn = DBConnection.getConnection();
             conn.setAutoCommit(false);
 
-            // Insert users
             String userInsert = "INSERT INTO users (username, password, role) VALUES (?, ?, ?)";
             try (PreparedStatement uStmt = conn.prepareStatement(userInsert, Statement.RETURN_GENERATED_KEYS)) {
                 uStmt.setString(1, s.getUsername());
@@ -80,7 +79,6 @@ public class StudentDAO {
                 }
             }
 
-            // Insert students
             String sql = """ 
                 INSERT INTO students (
                     id, student_code, full_name, ma_khoa, ma_nganh,
