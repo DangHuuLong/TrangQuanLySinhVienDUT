@@ -103,8 +103,8 @@ public class CourseDAO {
             stmt.setInt(5, course.getInternshipCredits());
             stmt.setInt(6, course.getProjectCredits());
             stmt.setString(7, course.getCourseDescription());
-            stmt.setString(8, course.getCourseCode());
-            stmt.setString(9, course.getDepartmentCode());
+            stmt.setString(8, course.getDepartmentCode());
+            stmt.setString(9, course.getCourseCode());
 
             int rowsAffected = stmt.executeUpdate();
             return rowsAffected > 0;

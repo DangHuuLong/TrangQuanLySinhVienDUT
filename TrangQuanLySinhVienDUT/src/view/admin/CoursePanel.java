@@ -116,6 +116,7 @@ public class CoursePanel extends JPanel {
 
         if (course != null) {
             maField.setText(course.getCourseCode());
+            maField.setEnabled(false);
             tenField.setText(course.getCourseName());
             lythuyetField.setText(String.valueOf(course.getTheoryCredits()));
             thuchanhField.setText(String.valueOf(course.getPracticeCredits()));
