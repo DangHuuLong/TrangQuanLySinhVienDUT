@@ -57,6 +57,10 @@ public class AdminPanel extends JFrame {
         majorBtn.addActionListener(e -> cardLayout.show(contentPanel, "majors"));
         navPanel.add(majorBtn);
 
+        // Điều hướng -> Trang quản lý học phần
+        JButton courseBtn = createNavButton("Học phần");
+        courseBtn.addActionListener(e -> cardLayout.show(contentPanel, "courses"));
+        navPanel.add(courseBtn);
 
         
         // Logout
@@ -78,6 +82,7 @@ public class AdminPanel extends JFrame {
         contentPanel.add(new LecturerPanel(), "lecturers");
         contentPanel.add(new DepartmentPanel(), "departments");
         contentPanel.add(new MajorPanel(), "majors");
+        contentPanel.add(new CoursePanel(), "courses");
 
         add(navPanel, BorderLayout.WEST);
         add(contentPanel, BorderLayout.CENTER);
